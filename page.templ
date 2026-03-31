@@ -1,0 +1,47 @@
+package main
+
+import "time"
+
+templ page(title string) {
+	<html lang="en">
+		<head>
+			<meta charset="utf-8"/>
+			<meta name="viewport" content="width=device-width, initial-scale=1"/>
+			<title>{ title }</title>
+			<link rel="stylesheet" href="/static/app.css"/>
+			<script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.8/dist/htmx.min.js"></script>
+		</head>
+		<body>
+			<main>
+				<h1>{ title }</h1>
+				<p>A tiny starter using Go, templ, and htmx.</p>
+				<section>
+					<h2>HTMX GET fragment</h2>
+					<button
+						hx-get="/time"
+						hx-target="#time-slot"
+						hx-swap="innerHTML"
+					>
+						Load server time
+					</button>
+					<div id="time-slot">
+						@serverTime(time.Now())
+					</div>
+				</section>
+				<section>
+					<h2>HTMX POST fragment</h2>
+					<button
+						hx-post="/click"
+						hx-target="#counter"
+						hx-swap="innerHTML"
+					>
+						Increment
+					</button>
+					<div id="counter">
+						@clickCount(0)
+					</div>
+				</section>
+			</main>
+		</body>
+	</html>
+}

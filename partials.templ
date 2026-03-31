@@ -1,0 +1,17 @@
+package main
+
+import "time"
+
+templ serverTime(t time.Time) {
+	<div>
+		<strong>Server time:</strong>
+		<span>{ t.Format(time.RFC3339) }</span>
+	</div>
+}
+
+templ clickCount(n int64) {
+	<div>
+		<strong>Clicks:</strong>
+		<span>{ n }</span>
+	</div>
+}
